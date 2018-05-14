@@ -17,19 +17,23 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED 
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
  * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /* Anagram Game Application */
 
 package com.toy.anagrams.lib;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 /**
  * Implementation of the logic for the Anagram Game application.
@@ -37,14 +41,13 @@ package com.toy.anagrams.lib;
 final class StaticWordLibrary extends WordLibrary {
 
     private static final String[] WORD_LIST = {
-    		"apple",
-    		"orange",
+    	"apple",
+    	"orange",
         "abstraction",
         "ambiguous",
         "arithmetic",
         "backslash",
         "bitmap",
-        
         "combination",
         "consequently",
         "consortium",
@@ -83,57 +86,10 @@ final class StaticWordLibrary extends WordLibrary {
         "hotjava",
         "vertex",
         "unsigned",
-        "traditional"};
+        "traditional"
+        };
 
-    private static final String[] SCRAMBLED_WORD_LIST = {
-    		"aplep",
-    		"reaong",
-        "batsartcoin",
-        "maibuguos",
-        "ratimhteci",
-        "abkclssha",
-        "ibmtpa",
-        "ocbmnitaoni",
-        "ocsnqeeutnyl",
-        "ocsnroitmu",
-        "edrcmeneitgn",
-        "edepdnneyc",
-        "idasbmgiauet",
-        "ydanicm",
-        "neacsplutaoni",
-        "qeiuaveltn",
-        "xerpseisno",
-        "aficilatet",
-        "rfgaemtn",
-        "ehaxedicalm",
-        "milpmeneatitno",
-        "niidtsniugsiahleb",
-        "niehiratcen",
-        "nietnret",
-        "ajav",
-        "olacilazitno",
-        "imrcpoorecssro",
-        "anivagitno",
-        "poitimazitno",
-        "aparemert",
-        "aprtcki",
-        "ipkcel",
-        "opylomprich",
-        "irogorsuyl",
-        "isumtlnaoesuyl",
-        "psceficitaoni",
-        "tsurtcreu",
-        "elixalc",
-        "ilekiwse",
-        "amanegemtn",
-        "aminupalet",
-        "amhtmetacsi",
-        "ohjtvaa",
-        "evtrxe",
-        "nuisngde",
-        "rtdatioialn"
-    };
-    
+
     final static WordLibrary DEFAULT = new StaticWordLibrary();
 
     /**
@@ -157,7 +113,21 @@ final class StaticWordLibrary extends WordLibrary {
      * @return word at that index in its scrambled form
      */
     public String getScrambledWord(int idx) {
-        return SCRAMBLED_WORD_LIST[idx];
+    	String answer = WORD_LIST[idx];
+    	String str = "";
+    	int num =  answer.length();
+    	List<String> list = new ArrayList<String>();
+
+    	// １文字づつ配列に入れる
+    	for(int i=0; i<num; i++) {
+    		list.add(answer.substring(i, i+1));
+    	}
+
+    	Collections.shuffle(list);
+    	for(int i=0; i<num; i++) {
+    		str  = str + list.get(i);
+    	}
+    	return str;
     }
 
     /**
